@@ -1,11 +1,425 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Postres STEAM</title>
+    <style>
+        body {
+            font-family: cursive, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-image: url(/Imagenes/hojas-de-palma-en-la-esquina-de-fondo-rojo-brillante.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .header-panel {
+            background-color: #ffb347;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(243, 241, 241, 0.1);
+            text-align: center;
+            color: #000000;
+        }
+        .header-panel img { 
+    max-width: 400px;
+    height: auto;
+}
+.encabezado-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: #ffb347;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+}
+
+.encabezado-flex img {
+    width: 120px; /* ajusta el tamaño según tu logo */
+    height: auto;
+    border-radius: 10px;
+}
+
+.encabezado-flex h1 {
+    font-size: 2.5em;
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
+
+        .container {
+            padding: 20px;
+        }
+        .panel {
+            background-color: #fa805afa;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .panel-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .half-panel {
+            flex: 1;
+            min-width: 300px;
+        }
+        .postre-img, .preparacion-img {
+            width: 100%;
+            max-width: 500px;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #ffe0b2;
+        }
+        footer {
+            background-color: #ffb347;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 10px;
+        }
+      .subtitulo-panel {
+    background-color: #ffefd5;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 800; /* más grueso que 'bold' */
+    font-size: 1.6em;  /* más grande que 1.2em */
+    text-align: center;
+}
+
+.left-align {
+    text-align: left;
+}
+.galeria-preparacion {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+.paso {
+    background-color: #fffaf3;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.paso img {
+    width: 100%;
+    border-radius: 8px;
+    max-height: 200px;
+    object-fit: cover;
+}
+.paso p {
+    margin-top: 10px;
+    font-size: 0.95em;
+}
+.paso ul {
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.paso li {
+    margin-bottom: 5px;
+}
+.panel-row-doble {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap; /* para que se acomode bien en pantallas pequeñas */
+}
+
+.panel-descripcion,
+.panel-ingredientes {
+  width: 100%;
+  max-width: 500px;
+  background-color: #fa805afa;
+  padding: 60px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.galeria-pasos-paneles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.paso-panel {
+  background-color: #fffaf3;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.paso-panel img {
+  width: 100%;
+  border-radius: 8px;
+  max-height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+.img-ingredientes {
+  width: 50%; /* o 50% si la quieres aún más pequeña */
+  max-width: 300px;
+  height: auto;
+  margin: 10px auto;
+  display: block;
+}
+.panel-steam {
+  width: 90%;         /* o prueba con 80% o 70% */
+  max-width: 1500px;   /* puedes reducir este valor */
+  margin: 30px auto;
+  padding: 20px;
+  overflow-x: auto;   /* para que la tabla no se desborde */
+}
+.encabezado-imagen img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  margin-top: 20px; /* espacio arriba */
+}
+
+
+
+
+    </style>
 </head>
 <body>
-    
+   <!-- Logo y título sin ningún panel -->
+<div class="encabezado-imagen">
+  <img src="/Imagenes/Logooriginal.jpg" alt="Encabezado Ñawi Tentación">
+</div>
+
+
+
+
+
+    <div class="container">
+
+       <div class="panel-row-doble">
+  <!-- Panel de Descripción -->
+  <section class="panel panel-descripcion">
+    <div class="subtitulo-panel">Descripción</div>
+    <img src="/Imagenes/postres.png" alt="Pastel de Chocolate" class="postre-img">
+    <p>
+      Sumérgete en un mundo de sabor y color con nuestra variedad de postres caseros. Desde la vibrante alegría del Postre Arcoíris, hasta la frescura cítrica del Postre de Limón y el toque exótico del Postre de Maracuyá, cada bocado es una experiencia única.
+    </p>
+  </section>
+
+  <!-- Panel de Ingredientes -->
+  <section class="panel panel-ingredientes">
+  <div class="subtitulo-panel">Ingredientes</div>
+  <img src="/Imagenes/ingred.png" alt="Ingredientes para postre" class="img-ingredientes">
+    <p>
+      Para prepararlos necesitarás: <br>
+      - 8 huevos <br>
+      - Gelatinas de sabores (fresa, limón, uva, naranja)<br>
+      - 500g de leche condensada<br>
+      - 500g de crema de leche<br>
+      - 1 litro de leche entera<br>
+      - Gelatina sin sabor<br>
+      - Limones frescos y maracuyá
+    </p>
+  </section>
+</div>
+
+            <section class="panel half-panel">
+              
+  <div class="subtitulo-panel">Galería de Preparación</div>
+<div class="galeria-pasos-paneles">
+
+  <div class="panel paso-panel">
+    <img src="/Imagenes/paso1.jpg" alt="Paso 1">
+    <p><strong>Paso 1: Preparar los zumos naturales.</strong></p>
+    <ul>
+      <li>Exprime limones frescos hasta obtener el zumo necesario.</li>
+      <li>Extrae la pulpa de la maracuyá, licúala y resérvala.</li>
+    </ul>
+  </div>
+
+  <div class="panel paso-panel">
+    <img src="/Imagenes/paso 2.jpg" alt="Paso 2">
+    <p><strong>Paso 2: Preparar la mezcla base.</strong></p>
+    <ul>
+      <li>En una licuadora, combina: 8 huevos, 500g de leche condensada, 500g de crema de leche y leche entera según el espesor deseado.</li>
+    </ul>
+  </div>
+
+  <div class="panel paso-panel">
+    <img src="/Imagenes/paso3.jpg" alt="Paso 3">
+    <p><strong>Paso 3: Preparar las gelatinas de colores (solo para el postre arcoíris).</strong></p>
+    <ul>
+      <li>Prepara 4 sabores de gelatina (fresa, limón, naranja, uva) con un poco menos de agua para que queden más firmes.</li>
+      <li>Vierte cada una en moldes planos y deja cuajar bien en refrigeración.</li>
+      <li>Luego, corta en cubos pequeños y reserva para posteriormente combinarlos.</li>
+    </ul>
+  </div>
+
+  <div class="panel paso-panel">
+    <img src="/Imagenes/paso4.jpg" alt="Paso 4">
+    <p><strong>Paso 4: Integrar las gelatinas con la mezcla base.</strong></p>
+    <ul>
+      <li>Disuelve gelatina sin sabor en un poco de agua, caliéntala en baño maría y agrégala a la mezcla base.</li>
+      <li>Incorpora los cubos de gelatina de colores con cuidado.</li>
+      <li>Vierte en moldes individuales y refrigera al menos 4 a 6 horas.</li>
+    </ul>
+  </div>
+
+  <div class="panel paso-panel">
+    <img src="/Imagenes/paso5.jpg" alt="Paso 5">
+    <p><strong>Paso 5: Preparar postres de limón y maracuyá</strong></p>
+    <ul>
+      <li>Mezcla parte de la base con zumo de limón + gelatina sin sabor disuelta.</li>
+      <li>Mezcla otra parte con pulpa licuada de maracuyá + gelatina sin sabor disuelta.</li>
+      <li>Vierte en moldes individuales y refrigera.</li>
+    </ul>
+  </div>
+
+  <div class="panel paso-panel">
+    <img src="/Imagenes/paso6.jpg" alt="Paso 6">
+    <p><strong>Paso 6: Reposar y servir</strong></p>
+    <ul>
+      <li>Refrigera todos los postres (arcoíris, limón y maracuyá) por varias horas o toda la noche.</li>
+      <li>¡Sirve fríos y disfruta!</li>
+    </ul>
+  </div>
+
+</div>
+            </section>
+        </div>
+
+       <section class="panel panel-steam">
+  <div class="subtitulo-panel">Tabla STEAM en la preparación de postres </div>
+  <div class="overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Proceso</th>
+                            <th>S (Ciencia)</th>
+                            <th>T (Tecnología)</th>
+                            <th>E (Ingeniería)</th>
+                            <th>A (Arte)</th>
+                            <th>M (Matemáticas)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Obtener zumo de limón y pulpa de maracuyá para saborizar los postres.</td>
+                            <td>Entender las propiedades ácidas de los limones (ácido cítrico) y maracuyás. Comprender cómo la extracción de zumo y pulpa afecta la composición física de las frutas.</td>
+                            <td>Uso de exprimidor manual y licuadora para la extracción eficiente de zumos y pulpas.</td>
+                            <td>Diseño de procesos para optimizar la extracción de jugo/pulpa, minimizando el desperdicio y maximizando el rendimiento.</td>
+                            <td> </td>
+                            <td>Medición de la cantidad de fruta necesaria para obtener el zumo o pulpa deseada.</td>
+                        </tr>
+                        <tr>
+                            <td>Combinar huevos, crema de leche, leche condensada y leche entera en la licuadora.</td>
+                            <td>Explicar la formación de una emulsión al mezclar líquidos de diferentes densidades (grasa de la crema, agua de la leche entera y dulzor de la leche condensada). Entender la función de los huevos como ligante y espesante.</td>
+                            <td>Utilización de la licuadora y sus funciones (velocidad, capacidad) para lograr una mezcla homogénea.</td>
+                            <td>Adaptación del proceso de licuado en tandas debido al tamaño limitado del equipo.</td>
+                            <td> </td>
+                            <td>Medición precisa de 500g de leche condensada, 500g de crema de leche, 8 huevos y leche entera segun el espesor.</td>
+                        </tr>
+                        <tr>
+                            <td>Postre Arcoíris: Preparación de Gelatinas de Colores</td>
+                            <td>Entender el proceso de gelificación de la gelatina (hidrólisis de colágeno) y cómo la temperatura afecta el cuajado. Observar cómo usar menos agua resulta en una gelatina más firme.</td>
+                            <td>Uso de refrigeradores para acelerar el proceso de cuajado de la gelatina.</td>
+                            <td>Diseño de recipientes adecuados para obtener capas uniformes de gelatina.</td>
+                            <td>Selección y combinación de colores (fresa, limón, naranja, uva) para el efecto visual de arcoíris.</td>
+                            <td>Medición precisa de la cantidad de agua para cada gelatina. Medición de las dimensiones de las capas (1-2 cm de grosor).</td>
+                        </tr>
+                        <tr>
+                            <td>Mezclar la crema base con gelatina sin sabor disuelta y los cubos de gelatina de colores.</td>
+                            <td>Comprender cómo la gelatina sin sabor actúa como agente espesante para la mezcla base.</td>
+                            <td> </td>
+                            <td>Asegurar una distribución uniforme de los cubos de gelatina en la mezcla base.</td>
+                            <td>La disposición visual de los cubos de colores en la crema.</td>
+                            <td>Cálculo de la cantidad de gelatina sin sabor necesaria para la mezcla base para asegurar el cuajado final.</td>
+                        </tr>
+                        <tr>
+                            <td>Para el postre de limòn mezclar una porción de la mezcla base con zumo de limón y gelatina sin sabor.</td>
+                            <td>Entender la reacción del ácido del limón con mezcla base. Explicar cómo la gelatina sin sabor cuaja la mezcla líquida.</td>
+                            <td> </td>
+                            <td>Proceso de integración homogénea del zumo y la gelatina sin sabor en la mezcla base.</td>
+                            <td> </td>
+                            <td>Ajuste de la proporción de zumo de limón para lograr el sabor deseado.</td>
+                        </tr>
+                        <tr>
+                            <td>Para el postre de maracuya mezclar una porción de la mezcla base con pulpa de maracuyá y gelatina sin sabor.</td>
+                            <td>Entender la interacción de la pulpa de maracuyá con la mezcla base y el efecto de la gelatina sin sabor.</td>
+                            <td> </td>
+                            <td>Proceso de integración homogénea de la pulpa y la gelatina sin sabor en la mezcla base.</td>
+                            <td> </td>
+                            <td>Ajuste de la proporción de pulpa de maracuyá para lograr el sabor deseado.</td>
+                        </tr>
+                         <tr>
+                            <td>Refrigerar todos los postres hasta que estén completamente cuajados.</td>
+                            <td>Principios de la refrigeración para la gelificación y conservación de alimentos.</td>
+                            <td>Uso eficiente del refrigerador para el cuajado y almacenamiento.</td>
+                            <td>Optimización del espacio en el refrigerador para acomodar múltiples postres.</td>
+                            <td>Presentación final de los postres en recipientes individuales y creacion de logo.</td>
+                            <td>Control del tiempo de refrigeración (4-6 horas o toda la noche) para asegurar el cuajado óptimo.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+      <section class="panel">
+    <div class="subtitulo-panel left-align">¿Dónde Encontrar Nuestros Postres?</div>
+    <p><strong>Presentado por:</strong>  <ul>
+      <li>Estefany Melo</li>
+      <li>Jacquelin Nazate</li>
+      <li>Marlon Gomez</li>
+      <li>Claudia Chiles</li>
+      <li>Ana Ordoñez</li>
+      <li>Marylin Solarte</li>
+    </ul></p>
+   
+    <p><strong>Contáctenos:</strong> 3216642372 </p>
+    <p><strong>Dirección:</strong> Universidad de Nariño, Sede Torobajo, Pasto, Nariño, Colombia</p>
+    <p><strong>Google Maps:</strong></p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.897055038545!2d-77.2959904262831!3d1.2312940619480726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e2ed38f1c804cdd%3A0x4f4eb58ae26763eb!2sUniversidad%20de%20Nari%C3%B1o%20-%20Sede%20Torobajo!5e0!3m2!1ses-419!2sco!4v1747670857981!5m2!1ses-419!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Postres STEAM - Todos los derechos reservados</p>
+    </footer>
 </body>
-</html>
+</html> 
